@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class GestionnaireTachesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GestionnaireTachesApplication.class, args);
-	}
+		SpringApplication.run(GestionnaireTachesApplication.class, args);}
 
 }
