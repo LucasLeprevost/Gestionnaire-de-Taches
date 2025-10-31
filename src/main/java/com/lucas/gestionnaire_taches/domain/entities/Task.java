@@ -24,7 +24,7 @@ public class Task {
     private LocalDateTime dueDate;
 
     @Column(name = "status", nullable = false)
-    private TaskStatusEnum status;
+    private TaskStatus status;
 
     @Column(name = "priority", nullable = false)
     private TaskPriority priority;
@@ -42,7 +42,7 @@ public class Task {
     public Task() {
     }
 
-    public Task(UUID id, String title, String description, LocalDateTime dueDate, TaskStatusEnum status,
+    public Task(UUID id, String title, String description, LocalDateTime dueDate, TaskStatus status,
                 TaskPriority priority, TaskList taskList, LocalDateTime createdAt, LocalDateTime updatedAt)
     {
         this.id = id;
@@ -120,11 +120,11 @@ public class Task {
         this.priority = priority;
     }
 
-    public TaskStatusEnum getStatus() {
+    public TaskStatus getStatus() {
         return status;
     }
 
-    public void setStatus(TaskStatusEnum status) {
+    public void setStatus(TaskStatus status) {
         this.status = status;
     }
 
