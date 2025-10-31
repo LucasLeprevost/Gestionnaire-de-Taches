@@ -31,11 +31,13 @@ public class TaskList {
     @Column (name = "uptated", nullable = false)
     private LocalDateTime updated_at;
 
-    public TaskList() {
+    public TaskList()
+    {
     }
 
     public TaskList(UUID id, String title, String description, List<Task> tasks, LocalDateTime createdAt,
-                    LocalDateTime updated_at) {
+                    LocalDateTime updated_at)
+    {
         this.id = id;
         this.title = title;
         this.description = description;
