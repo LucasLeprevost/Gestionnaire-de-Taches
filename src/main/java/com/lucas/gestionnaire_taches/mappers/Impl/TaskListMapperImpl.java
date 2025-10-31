@@ -21,13 +21,27 @@ public class TaskListMapperImpl implements TaskListMapper
         this.taskMapper = taskMapper;
     }
 
+
+    /**
+     * Convertit un DTO (TaskListDto) en Entité (TaskList).
+     *
+     * 1. Optional.ofNullable(taskListDto.tasks()) : Vérifie si la liste de DTOs des tâches est NULL.
+     * 2. .map(...) : SI la liste n'est pas NULL, ALORS elle est transformée en un Stream.
+     * 3. Le Stream est traité : Chaque TaskDto est converti en Entité Task (taskMapper::fromDto).
+     * 4. toList() : Les Entités converties sont rassemblées dans une List<Task>.
+     * 5. .orElse(null) : SINON (si la liste était NULL au départ), la valeur retournée est NULL.
+     *
+     * @param taskListDto Le DTO de liste de tâches reçu de la couche API.
+     * @return Une Entité TaskList prête à être sauvegardée en base de données.
+     */
     @Override
-    public TaskList fromDto(TaskListDto taskListDto) {
+    public TaskList fromDto(TaskListDto taskListDto)
+    {
         return new TaskList(
                 taskListDto.id(),
                 taskListDto.title(),
                 taskListDto.description(),
-                Optional.ofNullable(taskListDto.tasks())
+                Optional.ofNullable(taskListDto.tasks())            //Récupère la liste de DTOs ou un Optional vide.
                         .map(tasks -> tasks.stream()
                             .map(taskMapper::fromDto)
                             .toList()
