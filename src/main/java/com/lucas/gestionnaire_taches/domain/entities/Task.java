@@ -29,28 +29,31 @@ public class Task {
     @Column(name = "priority", nullable = false)
     private TaskPriority priority;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "task_list_id", nullable = false)
+    private TaskList taskList;
+
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-    public Task()
-    {
-
+    public Task() {
     }
 
-    public Task(UUID id, String title, String description, LocalDateTime updatedAt, LocalDateTime createdAt,
-                TaskStatusEnum status, TaskPriority priority,LocalDateTime dueDate)
+    public Task(UUID id, String title, String description, LocalDateTime dueDate, TaskStatusEnum status,
+                TaskPriority priority, TaskList taskList, LocalDateTime createdAt, LocalDateTime updatedAt)
     {
+        this.id = id;
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
+        this.taskList = taskList;
         this.priority = priority;
-        this.status = status;
         this.dueDate = dueDate;
         this.description = description;
+        this.status = status;
         this.title = title;
-        this.id = id;
     }
 
     public UUID getId() {
@@ -59,6 +62,30 @@ public class Task {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LocalDateTime getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(LocalDateTime dueDate) {
+        this.dueDate = dueDate;
     }
 
     public LocalDateTime getUpdatedAt() {
@@ -77,6 +104,14 @@ public class Task {
         this.createdAt = createdAt;
     }
 
+    public TaskList getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(TaskList taskList) {
+        this.taskList = taskList;
+    }
+
     public TaskPriority getPriority() {
         return priority;
     }
@@ -93,48 +128,20 @@ public class Task {
         this.status = status;
     }
 
-    public LocalDateTime getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(LocalDateTime dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
         return Objects.equals(id, task.id) && Objects.equals(title, task.title) &&
                 Objects.equals(description, task.description) && Objects.equals(dueDate, task.dueDate) &&
-                status == task.status && priority == task.priority && Objects.equals(createdAt, task.createdAt) &&
-                Objects.equals(updatedAt, task.updatedAt);
+                status == task.status && priority == task.priority && Objects.equals(taskList, task.taskList) &&
+                Objects.equals(createdAt, task.createdAt) && Objects.equals(updatedAt, task.updatedAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, description, dueDate, status, priority, createdAt, updatedAt);
+        return Objects.hash(id, title, description, dueDate, status, priority, taskList, createdAt, updatedAt);
     }
-
-
-
-
 
     @Override
     public String toString() {
@@ -145,6 +152,7 @@ public class Task {
                 ", dueDate=" + dueDate +
                 ", status=" + status +
                 ", priority=" + priority +
+                ", taskList=" + taskList +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';
