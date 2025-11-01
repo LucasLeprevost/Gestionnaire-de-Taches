@@ -28,7 +28,7 @@ public class TaskList {
     @Column(name = "created", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column (name = "uptated", nullable = false)
+    @Column (name = "updated", nullable = false)
     private LocalDateTime updated_at;
 
     public TaskList()
