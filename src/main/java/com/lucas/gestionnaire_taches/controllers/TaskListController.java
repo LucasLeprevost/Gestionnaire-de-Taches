@@ -54,9 +54,25 @@ public class TaskListController
         return this.taskListMapper.toDto(createdTaskList);
     }
 
+
     @GetMapping("/{task_list_id}")
-    public Optional<TaskListDto> getTaskList(@PathVariable ("task_list_id") UUID taskListId)
-    {
+    public Optional<TaskListDto> getTaskList(@PathVariable ("task_list_id") UUID taskListId) // Spring prend la valeur
+    {                                                                                        //de l'URL et la convertit automatiquement au type UUID
         return this.taskListService.getTaskList(taskListId).map(this.taskListMapper::toDto);
     }
+
+    @PutMapping("/{task_list_id}")
+    public TaskListDto updateTaskList(
+            @PathVariable ("task_list_id") UUID taskListId,
+            @RequestBody TaskListDto taskListDto
+    )
+    {
+        TaskList updatedTaskList = this.taskListService.updateTaskList(
+                taskListId,
+                this.taskListMapper.fromDto(taskListDto));
+
+        return this.taskListMapper.toDto(updatedTaskList);
+    }
+
+
 }
