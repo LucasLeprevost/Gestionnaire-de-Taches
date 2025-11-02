@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
-@ControllerAdvice
+@ControllerAdvice   //Indique à Spring de surveiller toutes les erreurs qui se produisent dans @RestController
 public class GlobalExceptionHandler
 {
-    @ExceptionHandler(IllegalArgumentException.class)
+    @ExceptionHandler(IllegalArgumentException.class)//specifie le type d'Exception que Spring doit intercepter
     public ResponseEntity<ErrorResponse> handleException(
             RuntimeException ex, WebRequest request)
     {
