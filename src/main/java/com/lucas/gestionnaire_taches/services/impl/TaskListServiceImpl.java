@@ -34,8 +34,8 @@ public class TaskListServiceImpl implements TaskListService
                 throw new IllegalArgumentException("La taskList doit avoir un titre");
 
         LocalDateTime now = LocalDateTime.now();
-        return this.taskListRepository.save( new TaskList(
-                null,
+        return this.taskListRepository.save( new TaskList(      // le JPA comprend qu il doit faire un insert into
+                null,                                           // grace au .save()
                 taskList.getTitle(),
                 taskList.getDescription(),
                 null,
