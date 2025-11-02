@@ -5,6 +5,7 @@ import com.lucas.gestionnaire_taches.repositories.TaskListRepository;
 import com.lucas.gestionnaire_taches.services.TaskListService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -21,5 +22,26 @@ public class TaskListServiceImpl implements TaskListService
     public List<TaskList> listTaskLists()
     {
         return this.taskListRepository.findAll();
+    }
+
+    @Override
+    public TaskList createTaskList(TaskList taskList)
+    {
+        if(null!= taskList.getId())
+            throw new IllegalArgumentException("TaskList a deja un Id");
+
+        if (null == taskList.getTitle() || taskList.getTitle().isBlank())
+                throw new IllegalArgumentException("La taskList doit avoir un titre");
+
+        LocalDateTime now = LocalDateTime.now();
+        return this.taskListRepository.save( new TaskList(
+                null,
+                taskList.getTitle(),
+                taskList.getDescription(),
+                null,
+                now,
+                now
+
+        ));
     }
 }
