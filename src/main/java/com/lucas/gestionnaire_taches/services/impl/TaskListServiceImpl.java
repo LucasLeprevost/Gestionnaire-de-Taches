@@ -73,4 +73,16 @@ public class TaskListServiceImpl implements TaskListService
 
 
     }
+
+    @Override
+    public void deleteTaskList(UUID taskListId)
+    {
+        TaskList existingTaskList = this.taskListRepository.findById(taskListId).orElseThrow(() ->
+            new IllegalArgumentException("TaskList inexistant"));
+
+
+        this.taskListRepository.delete(existingTaskList);
+    }
+
+
 }

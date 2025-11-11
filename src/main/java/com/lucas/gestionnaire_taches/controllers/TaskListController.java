@@ -64,8 +64,8 @@ public class TaskListController
     @PutMapping("/{task_list_id}")
     public TaskListDto updateTaskList(
             @PathVariable ("task_list_id") UUID taskListId,
-            @RequestBody TaskListDto taskListDto
-    )
+            @RequestBody TaskListDto taskListDto //indique à Spring : "Lis le corps (Body) de la requête HTTP
+    )                                   //(le JSON que le frontend envoie) et convertis-le automatiquement en un objet TaskListDto
     {
         TaskList updatedTaskList = this.taskListService.updateTaskList(
                 taskListId,
@@ -73,6 +73,14 @@ public class TaskListController
 
         return this.taskListMapper.toDto(updatedTaskList);
     }
+
+
+    @DeleteMapping("/{task_list_id}")
+    public void deleteTaskList (@PathVariable ("task_list_id") UUID taskListId)
+    {
+        this.taskListService.deleteTaskList(taskListId);
+    }
+
 
 
 }
