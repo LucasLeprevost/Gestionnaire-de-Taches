@@ -4,10 +4,7 @@ import com.lucas.gestionnaire_taches.domain.dto.TaskDto;
 import com.lucas.gestionnaire_taches.domain.entities.Task;
 import com.lucas.gestionnaire_taches.mappers.TaskMapper;
 import com.lucas.gestionnaire_taches.services.TaskService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -32,5 +29,15 @@ public class TaskController
                 .map(this.taskMapper::toDto)
                 .toList();
 
+    }
+
+    @PostMapping
+    public TaskDto createTask (@PathVariable("task_list_id") UUID taskListId,
+                                     @RequestBody TaskDto taskDto)
+    {
+        Task taskCreated = this.taskService.createTask(taskListId,
+                this.taskMapper.fromDto(taskDto));
+
+        return this.taskMapper.toDto(taskCreated);
     }
 }
