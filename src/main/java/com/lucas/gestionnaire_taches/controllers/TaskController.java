@@ -52,4 +52,16 @@ public class TaskController
                 .map(this.taskMapper::toDto);
 
     }
+
+    @PutMapping (path = "/{task_id}")
+    public TaskDto updateTaskt (
+            @PathVariable("task_list_id") UUID taskListId,
+            @PathVariable("task_id") UUID taskId,
+            @RequestBody TaskDto taskDto
+    )
+    {
+        Task taskUpdate = this.taskService.updateTask(taskListId,taskId,this.taskMapper.fromDto(taskDto));
+
+        return this.taskMapper.toDto(taskUpdate);
+    }
 }

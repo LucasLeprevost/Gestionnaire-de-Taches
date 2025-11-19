@@ -10,8 +10,8 @@ import com.lucas.gestionnaire_taches.services.TaskService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -76,11 +76,38 @@ public class TaskServiceImpl implements TaskService
         return this.taskRepository.findByTaskListIdAndId(taskListId,taskId);
     }
 
-
     @Override
-    public Task updateTask() {
-        return null;
+    public Task updateTask(UUID taskListId, UUID taskId, Task task)
+    {
+        if (null == task.getId())
+            throw new IllegalArgumentException("task doit avoir un id");
+
+        if (!Objects.equals(task.getId(), taskId))
+            throw new IllegalArgumentException("Vous ne pouvez pas modifier l'id d'une task");
+
+        if (task.getStatus() == null)
+            throw new IllegalArgumentException(("Task dois avoir un status valide"));
+
+        if (task.getPriority() == null)
+            throw new IllegalArgumentException(("Task dois avoir une priority valide"));
+
+        if (null == taskListId)
+            throw new IllegalArgumentException("Votre taskList doit exister");
+
+        Task existingTask = this.taskRepository.findByTaskListIdAndId(taskListId, taskId)
+                .orElseThrow(() -> new IllegalArgumentException("Votre task doit exister"));
+
+        existingTask.setTitle(task.getTitle());
+        existingTask.setDescription(task.getTitle());
+        existingTask.setDueDate(task.getDueDate());
+        existingTask.setPriority(task.getPriority());
+        existingTask.setStatus(task.getStatus());
+        existingTask.setUpdatedAt(now());
+
+        return this.taskRepository.save(existingTask);
+
     }
+
 
     @Override
     public void deleteTask() {
