@@ -47,7 +47,7 @@ public class TaskServiceImpl implements TaskService
 
         TaskPriority taskPriority = Optional.ofNullable(task.getPriority()).orElse(TaskPriority.MEDIUM);
 
-        LocalDateTime now = now(ZoneId.of("ECT"));
+        LocalDateTime now = now();
 
         TaskStatus taskStatus = TaskStatus.OPEN;
 
@@ -70,6 +70,11 @@ public class TaskServiceImpl implements TaskService
         return this.taskRepository.save(taskToSave);
     }
 
+    @Override
+    public Optional<Task> getTask(UUID taskListId, UUID taskId)
+    {
+        return this.taskRepository.findByTaskListIdAndId(taskListId,taskId);
+    }
 
 
     @Override
