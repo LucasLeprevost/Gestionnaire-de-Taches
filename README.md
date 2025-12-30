@@ -5,51 +5,33 @@ Note importante : Ce dépôt se concentre exclusivement sur la partie Backend Ja
 
 🚀 Fonctionnalités implémentées
 Architecture RESTful : Gestion complète des listes de tâches et des tâches (CRUD).
-
 Spring Data JPA : Persistance des données avec PostgreSQL.
-
 Mapping DTO : Utilisation de Mappers pour séparer les entités de base de données des objets d'échange API.
-
 Validation & Exception Handling : Gestion centralisée des erreurs (Global Exception Handler).
-
 Automatisation : Scripts de démarrage et d'arrêt (.bat pour Windows, .sh pour Linux/Mac).
 
 🛠️ Prérequis
 Avant de lancer le projet, assure-toi d'avoir installé :
-
 Java 21 ou supérieur
-
 Docker Desktop (pour la base de données PostgreSQL)
-
 Node.js
 
 🚦 Comment lancer le projet (à la racine)
-
 Sur windows : 
-
 ./start.bat
-
 ./stop.bat 
 
 Sur Linux/Mac
-
 chmod +x start.sh stop.sh
-
 ./start.sh
-
 ./stop.sh
 
 
 📂 Structure du projet (Backend)
-
 src/main/java/.../domain : Entités JPA et Objets DTO.
-
 src/main/java/.../repositories : Interfaces Spring Data pour l'accès aux données.
-
 src/main/java/.../services : Logique métier de l'application.
-
 src/main/java/.../controllers : Points d'entrée de l'API.
-
 src/main/java/.../mappers : Conversion entre Entités et DTOs.
 
 
