@@ -13,29 +13,20 @@ Ce projet est une API REST développée pour l'apprentissage du framework **Spri
 
 ## 📸 Aperçu du Projet
 
-### Interface Utilisateur (Frontend de test)
-Voici à quoi ressemble l'interface permettant de tester l'API :
 ![Création d'une tache](images/creationTaches.png)
 
 ![Contenue d'une liste de tache](images/listeTaches.png)
 
 ![Liste des listes de taches](images/listListTaches.png)
 
-
-
-### Modélisation des Données
-Structure de la base de données PostgreSQL :
-![Schéma BDD](images/diagramme-comp4.png)
-
 ---
 
 ## 🚀 Fonctionnalités implémentées
 
-- 🔌 **Architecture RESTful** : Gestion complète des listes de tâches et des tâches (CRUD).
-- 💾 **Spring Data JPA** : Persistance des données avec PostgreSQL.
-- 🔄 **Mapping DTO** : Utilisation de Mappers pour séparer les entités de base de données des objets d'échange API.
-- 🛡️ **Validation & Exception Handling** : Gestion centralisée des erreurs (*Global Exception Handler*).
-- 🤖 **Automatisation** : Scripts de démarrage et d'arrêt simplifiés.
+-  **Architecture RESTful** : Gestion complète des listes de tâches et des tâches (CRUD).
+-  **Spring Data JPA** : Persistance des données avec PostgreSQL.
+-  **Mapping DTO** : Utilisation de Mappers pour séparer les entités de base de données des objets d'échange API.
+-  **Automatisation** : Scripts de démarrage et d'arrêt simplifiés.
 
 ---
 
@@ -44,7 +35,7 @@ Structure de la base de données PostgreSQL :
 Avant de lancer le projet, assure-toi d'avoir installé :
 * **Java 21** ou supérieur
 * **Docker Desktop** (indispensable pour la base de données PostgreSQL)
-* **Node.js** (pour lancer le frontend si besoin)
+* **Node.js** (pour lancer le frontend )
 
 ---
 
@@ -55,7 +46,7 @@ Des scripts sont fournis à la racine pour faciliter le déploiement via Docker.
 ### 💻 Sur Windows
 
 ```batch
-# Démarrer l'application et la BDD
+# Démarrer et stopper l'application et la BDD
 ./start.bat
 
 ./stop.bat 
