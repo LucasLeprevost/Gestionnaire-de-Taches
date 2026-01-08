@@ -58,5 +58,32 @@ Des scripts sont fournis à la racine pour faciliter le déploiement via Docker.
 # Démarrer l'application et la BDD
 ./start.bat
 
-# Arrêter l'application
-./stop.bat
+./stop.bat 
+
+Sur Linux/Mac
+chmod +x start.sh stop.sh
+
+./start.sh
+
+./stop.sh
+
+
+📂 Structure du projet (Backend)
+
+src/main/java/.../domain : Entités JPA et Objets DTO.
+
+src/main/java/.../repositories : Interfaces Spring Data pour l'accès aux données.
+
+src/main/java/.../services : Logique métier de l'application.
+
+src/main/java/.../controllers : Points d'entrée de l'API.
+
+src/main/java/.../mappers : Conversion entre Entités et DTOs.
+
+
+🛠️ Configuration de la base de données
+
+Par défaut, le projet est configuré pour se connecter à PostgreSQL 
+sur le port 5433 (pour éviter les conflits avec une installation locale 
+existante). Ces réglages sont modifiables dans le 
+fichier src/main/resources/application.properties
